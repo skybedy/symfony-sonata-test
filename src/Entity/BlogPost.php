@@ -30,13 +30,19 @@ class BlogPost
     /**
      * @ORM\Column(type="boolean")
      */
-    private $draft;
+    private $draft = false;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="blogPost")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
 
     public function getId(): ?int
     {
@@ -90,4 +96,16 @@ class BlogPost
 
         return $this;
     }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
 }
